@@ -50,7 +50,9 @@ def laureats_list():
             raise ValueError
     except ValueError:
         return abort(400)
-    page = laureats[p * 50:(p + 1)*50]
+    start_idx = p * PAGE_SIZE
+    end_idx = (p + 1) * PAGE_SIZE
+    page = laureats[start_idx:end_idx]
     return jsonify({
         'page': p,
         'count_on_page': PAGE_SIZE,
